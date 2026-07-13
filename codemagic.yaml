@@ -5,19 +5,18 @@ workflows:
       flutter: stable
       xcode: latest
     scripts:
-      - name: Get Flutter dependencies
+      - name: Get dependencies
         script: flutter pub get
-      - name: Set up code signing
+      - name: Build and package IPA
         script: |
-          echo "Setting up code signing..."
-          # Create a dummy signing configuration for CI
-          echo "PROVISIONING_PROFILE_SPECIFIER = ''" > ios/Flutter/Release.xcconfig
-          echo "CODE_SIGNING_ALLOWED = NO" >> ios/Flutter/Release.xcconfig
-          echo "CODE_SIGNING_REQUIRED = NO" >> ios/Flutter/Release.xcconfig
-      - name: Build iOS app
-        script: flutter build ios --release --no-codesign
+          flutter build ios --release --no-codesign
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -r Runner.app Payload/
+          zip -r ../../../Runner.ipa Payload/
+          cd ../../../
     artifacts:
-      - build/ios/iphoneos/*.ipa
+      - Runner.ipa
     publishing:
       email:
         recipients:
