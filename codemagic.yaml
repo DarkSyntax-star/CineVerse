@@ -7,6 +7,13 @@ workflows:
     scripts:
       - name: Get Flutter dependencies
         script: flutter pub get
+      - name: Set up code signing
+        script: |
+          echo "Setting up code signing..."
+          # Create a dummy signing configuration for CI
+          echo "PROVISIONING_PROFILE_SPECIFIER = ''" > ios/Flutter/Release.xcconfig
+          echo "CODE_SIGNING_ALLOWED = NO" >> ios/Flutter/Release.xcconfig
+          echo "CODE_SIGNING_REQUIRED = NO" >> ios/Flutter/Release.xcconfig
       - name: Build iOS app
         script: flutter build ios --release --no-codesign
     artifacts:
