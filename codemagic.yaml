@@ -7,17 +7,8 @@ workflows:
     scripts:
       - name: Get dependencies
         script: flutter pub get
-      - name: Build iOS app
+      - name: Build unsigned app
         script: |
           flutter build ios --release --no-codesign
-          cd build/ios/iphoneos
-          mkdir -p Payload
-          cp -r Runner.app Payload/
-          zip -r ../../../Runner.ipa Payload/
-          cd ../../../
     artifacts:
-      - Runner.ipa
-    publishing:
-      email:
-        recipients:
-          - alexkyeyune444@gmail.com
+      - build/ios/iphoneos/Runner.app
