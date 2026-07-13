@@ -7,9 +7,10 @@ workflows:
     scripts:
       - name: Get dependencies
         script: flutter pub get
-      - name: Build and package IPA
+      - name: Build iOS app
         script: |
           flutter build ios --release --no-codesign
+          # Create IPA from the built app
           cd build/ios/iphoneos
           mkdir -p Payload
           cp -r Runner.app Payload/
