@@ -1,6 +1,6 @@
 
 class ApiEndpoints {
-  static const String baseUrl = 'http://192.168.56.1:8000/api/v1'; // Android emulator
+  static const String baseUrl = 'https://cineverse-backend-1176.onrender.com/api/v1'; // Android emulator
   // static const String baseUrl = 'http://localhost:8000/api/v1'; // iOS/Chrome
   static const String register = '/auth/register';
   static const String login = '/auth/login';
