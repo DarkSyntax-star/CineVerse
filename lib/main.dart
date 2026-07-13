@@ -6,11 +6,7 @@ import 'app.dart';
 void main() {
   runApp(
     const ProviderScope(
-      child: IosPreview(
-        deviceModel: DeviceModel.iPhone16ProMax,
-        enableInspector: true,
         child: MyApp(),
       ),
     ),
-  );
 }
